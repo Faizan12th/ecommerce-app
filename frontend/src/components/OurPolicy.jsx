@@ -2,27 +2,43 @@ import React from 'react'
 import { assets } from '../assets/assets'
 
 const OurPolicy = () => {
+  const policies = [
+    {
+      icon: assets.exchange_icon,
+      title: "Easy Exchange Policy",
+      description: "We offer a hassle-free exchange on all items.",
+    },
+    {
+      icon: assets.quality_icon,
+      title: "7 Days Return Policy",
+      description: "You can return items within 7 days of purchase.",
+    },
+    {
+      icon: assets.support_img,
+      title: "Best Customer Support",
+      description: "24/7 customer support at your fingertips.",
+    },
+  ]
+
   return (
-    <div className='flex flex-col sm:flex-row justify-around gap-12 sm:gap-2 text-center py-20 text-xs sm:text-sm md:text-base text-gray-700'>
-      
-      <div>
-        <img src={assets.exchange_icon} className='w-12 m-auto mb-5' alt="" />
-        <p className='font-semibold'>Easy Exchange Policy</p>
-        <p className='text-gray-400'>We offer hassle free exchange policy</p>
+    <section className="py-20 px-6 bg-gradient-to-br from-gray-900 via-gray-950 to-black text-gray-100 rounded-xl shadow-lg">
+      <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-12">
+        {policies.map((policy, index) => (
+          <div
+            key={index}
+            className="bg-gray-900 backdrop-blur-sm rounded-xl p-6 text-center shadow-md hover:shadow-teal-500/10 hover:scale-105 transition duration-300 w-full sm:w-1/3"
+          >
+            <img
+              src={policy.icon}
+              className="w-14 mx-auto mb-4 filter brightness-150 invert"
+              alt={policy.title}
+            />
+            <h3 className="text-base font-semibold mb-1 text-teal-300">{policy.title}</h3>
+            <p className="text-sm text-gray-400">{policy.description}</p>
+          </div>
+        ))}
       </div>
-
-      <div>
-        <img src={assets.quality_icon} className='w-12 m-auto mb-5' alt="" />
-        <p className='font-semibold'>7 Days Return Policy</p>
-        <p className='text-gray-400'>We privide 7 days free return policy</p>
-      </div>
-
-      <div>
-        <img src={assets.support_img} className='w-12 m-auto mb-5' alt="" />
-        <p className='font-semibold'>Beat Customer Support</p>
-        <p className='text-gray-400'>We privide 24/7 customer support</p>
-      </div>
-    </div>
+    </section>
   )
 }
 

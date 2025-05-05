@@ -1,11 +1,10 @@
 import React, { useContext, useState } from 'react'
 import { assets } from '../assets/assets'
 import { NavLink, Link } from 'react-router-dom'
-import { ShopContext } from '../context/ShopContext';
+import { ShopContext } from '../context/ShopContext'
 
 const Navbar = () => {
-
-    const [visible, setVisible] = useState(false);
+    const [visible, setVisible] = useState(false)
     const { setShowSearch, getCartCount, navigate, token, setToken, setCartItems } = useContext(ShopContext)
 
     const logout = () => {
@@ -16,75 +15,105 @@ const Navbar = () => {
     }
 
     return (
-        <div className='flex item-center justify-between py-5 font-medium'>
+        <div className='flex items-center justify-between py-5 px-4 md:px-10 bg-gray-900 text-gray-100 shadow-lg fixed top-0 left-0 right-0 z-50'>
 
-            <Link to='/'><img src={assets.logo} className='w-36' alt="" /></Link>
+            <Link to='/'>
+                <img src={assets.logo} className='w-36 invert' alt="Logo" />
+            </Link>
 
-            <ul className='hidden sm:flex gap-5 text-sm text-green-700'>
-
-
-                <NavLink to='/' className='flex flex-col items-center gap-1'>
-                    <p>HOME</p>
-                    <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 hidden' />
-                </NavLink>
-
-                <NavLink to='/collection' className='flex flex-col items-center gap-1'>
-                    <p>COLLECTION</p>
-                    <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 hidden' />
-                </NavLink>
-
-                <NavLink to='/about' className='flex flex-col items-center gap-1'>
-                    <p>ABOUT</p>
-                    <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 hidden' />
-                </NavLink>
-
-                <NavLink to='/contact' className='flex flex-col items-center gap-1'>
-                    <p>CONTACT</p>
-                    <hr className='w-2/4 border-none h-[1.5px] bg-gray-700 hidden' />
-                </NavLink>
+            <ul className='hidden sm:flex gap-8 text-sm font-semibold tracking-wide'>
+                {['/', '/collection', '/about', '/contact'].map((path, i) => {
+                    const labels = ['HOME', 'COLLECTION', 'ABOUT', 'CONTACT']
+                    return (
+                        <NavLink
+                            key={path}
+                            to={path}
+                            className={({ isActive }) =>
+                                `relative transition-all duration-300 hover:text-teal-400 ${
+                                    isActive ? 'text-teal-400' : ''
+                                }`
+                            }
+                        >
+                            {labels[i]}
+                            <span className="absolute bottom-[-6px] left-0 w-0 h-[2px] bg-teal-400 transition-all duration-300 group-hover:w-full"></span>
+                        </NavLink>
+                    )
+                })}
             </ul>
 
             <div className='flex items-center gap-6'>
-                <img onClick={() => { setShowSearch(true) }} src={assets.search_icon} className='w-5 cursor-pointer' alt="" />
+                <img
+                    onClick={() => setShowSearch(true)}
+                    src={assets.search_icon}
+                    className=' invert w-5 cursor-pointer hover:scale-110 transition-transform duration-200'
+                    alt="Search"
+                />
 
-                <div className='group relative'>
-                    <img onClick={()=> token ? null : navigate('/login')} src={assets.profile_icon} className='w-5 cursor-pointer' alt="" />
-                    {/* {dropdown menu} */}
-                    { token && 
-                    <div className='group-hover:block hidden absolute dropdown-menu right-0 pt-4'>
-                        <div className='flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded'>
-                            <p className='cursor-pointer hover:text-black'>My Profile</p>
-                            <p onClick={()=>navigate('/orders')} className='cursor-pointer hover:text-black'>Orders</p>
-                            <p onClick={logout} className='cursor-pointer hover:text-black'>Logout</p>
+                <div className='relative group'>
+                    <img
+                        onClick={() => !token && navigate('/login')}
+                        src={assets.profile_icon}
+                        className='invert w-5 cursor-pointer hover:scale-110 transition-transform duration-200'
+                        alt="Profile"
+                    />
+                    {token && (
+                        <div className='hidden group-hover:flex absolute right-0 top-2 mt-4 bg-gray-800 backdrop-blur-md text-sm text-gray-300 p-4 rounded-lg flex-col gap-2 w-40 shadow-lg border border-gray-700 transition-all duration-300'>
+                            <p className='hover:text-white cursor-pointer'>My Profile</p>
+                            <p onClick={() => navigate('/orders')} className='hover:text-white cursor-pointer'>Orders</p>
+                            <p onClick={logout} className='hover:text-red-500 cursor-pointer'>Logout</p>
                         </div>
-
-                    </div>}
+                    )}
                 </div>
 
                 <Link to='/cart' className='relative'>
-                    <img src={assets.cart_icon} className='w-5 min-w-5' alt="" />
-                    <p className='absolute right-[-5px] bottom-[-5px] w-4 text-center leading-4 bg-black text-white aspect-square rounded-full text-[8px]'>{getCartCount()}</p>
+                    <img
+                        src={assets.cart_icon}
+                        className='w-5 cursor-pointer hover:scale-110 transition-transform duration-200 invert'
+                        alt="Cart"
+                    />
+                    <p className='absolute -right-2 -bottom-2 w-4 h-4 bg-teal-500 text-black text-[10px] flex items-center justify-center rounded-full'>
+                        {getCartCount()}
+                    </p>
                 </Link>
 
-                <img onClick={() => { setVisible(true) }} src={assets.menu_icon} className='w-5 cursor-pointer sm:hidden' alt="" />
+                <img
+                    onClick={() => setVisible(true)}
+                    src={assets.menu_icon}
+                    className='w-5 cursor-pointer sm:hidden invert'
+                    alt="Menu"
+                />
             </div>
 
             {/* Sidebar menu for small screen */}
-            <div className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-white transition-all ${visible ? 'w-full' : 'w-0'}`}>
-                <div className='flex flex-col text-gray-600'>
-                    <div onClick={() => { setVisible(false) }} className='flex items-center gap-4 p-3 cursor-pointer'>
-                        <img src={assets.dropdown_icon} className='h-4 rotate-180' alt="" />
-                        <p>Back</p>
+            <div
+                className={`fixed top-0 right-0 h-full w-full bg-gray-900 text-white z-40 transform ${
+                    visible ? 'translate-x-0' : 'translate-x-full'
+                } transition-transform duration-300 ease-in-out sm:hidden`}
+            >
+                <div className='p-5 flex flex-col gap-4'>
+                    <div
+                        onClick={() => setVisible(false)}
+                        className='flex items-center gap-3 text-sm cursor-pointer text-gray-400 hover:text-white transition'
+                    >
+                        <img src={assets.dropdown_icon} className='h-4 rotate-180' alt="Back" />
+                        <span>Back</span>
                     </div>
 
-                    <NavLink onClick={() => { setVisible(false) }} className='py-2 pl-6 border' to='/'>HOME</NavLink>
-                    <NavLink onClick={() => { setVisible(false) }} className='py-2 pl-6 border' to='/collection'>COLLECTION</NavLink>
-                    <NavLink onClick={() => { setVisible(false) }} className='py-2 pl-6 border' to='/about'>ABOUT</NavLink>
-                    <NavLink onClick={() => { setVisible(false) }} className='py-2 pl-6 border' to='/contact'>CONTACT</NavLink>
-
+                    {['/', '/collection', '/about', '/contact'].map((path, i) => {
+                        const labels = ['HOME', 'COLLECTION', 'ABOUT', 'CONTACT']
+                        return (
+                            <NavLink
+                                key={path}
+                                to={path}
+                                onClick={() => setVisible(false)}
+                                className='border-b border-gray-700 pb-2 pt-3 text-lg font-medium hover:text-teal-400 transition-all'
+                            >
+                                {labels[i]}
+                            </NavLink>
+                        )
+                    })}
                 </div>
             </div>
-
         </div>
     )
 }

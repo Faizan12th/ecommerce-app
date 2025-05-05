@@ -3,36 +3,40 @@ import { ShopContext } from '../context/ShopContext'
 import Title from './Title'
 import ProductItem from './ProductItem'
 
-const LatestCollection = () => {
+const BestSeller = () => {
     const { products } = useContext(ShopContext)
-    const [latestProducts, setLatestProducts] = useState([])
+    const [bestSellerProducts, setBestSellerProducts] = useState([])
 
-    useEffect(()=>{
-        setLatestProducts(products.slice(0,10));
-    },[products])
-
+    useEffect(() => {
+        const filtered = products.filter(item => item.bestSeller)
+        setBestSellerProducts(filtered.slice(0, 10))
+    }, [products])
 
     return (
-        <div className='my-10'>
-            <div className='text-center py-8 text-3xl'>
-                <Title text1={'LATEST'} text2={"COLLECTIONS"} />
-                <p className='w-3/4 m-auto text-xs sm:text-sm md:text-base text-gray-600'>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio non inventore autem 
+        <section>
+            {/* Section Title */}
+            <div className="text-center mb-12">
+                <Title text1="BEST" text2="SELLERS" />
+                <p className="w-full sm:w-3/4 md:w-2/3 mx-auto text-sm md:text-base text-gray-400 mt-3 leading-relaxed">
+                    These are the fan-favorite pieces that everyone's talking about. Stylish, reliable, and in high demand.
                 </p>
             </div>
 
-            {/* Rendering products */}
-            <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 gap-y-6'>
-                {
-                    latestProducts.map((item,index)=>(
-                        <ProductItem key={index} id={item._id} image={item.image} name={item.name} price={item.price} />
-                    ))
-                }
+            {/* Product Grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                {bestSellerProducts.map((item, index) => (
+                    <div key={index} className="transition-transform duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-teal-500/10">
+                        <ProductItem
+                            id={item._id}
+                            image={item.image}
+                            name={item.name}
+                            price={item.price}
+                        />
+                    </div>
+                ))}
             </div>
-
-
-        </div>
+        </section>
     )
 }
 
-export default LatestCollection
+export default BestSeller

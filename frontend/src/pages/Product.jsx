@@ -1,101 +1,125 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { ShopContext } from '../context/ShopContext';
-import { assets } from '../assets/assets';
-import RelatedProducts from '../components/RelatedProducts';
+import { ShopContext } from '../context/ShopContext'
+import { assets } from '../assets/assets'
+import RelatedProducts from '../components/RelatedProducts'
 
 const Product = () => {
-
-  const { productId } = useParams();
-  const { products, currency, addToCart } = useContext(ShopContext);
-  const [productData, setProductData] = useState(false);
-  const [image, setImage] = useState('');
+  const { productId } = useParams()
+  const { products, currency, addToCart } = useContext(ShopContext)
+  const [productData, setProductData] = useState(null)
+  const [image, setImage] = useState('')
   const [size, setSize] = useState('')
 
-  const fetchProductData = async () => {
-
-    products.map((item) => {
-      if (item._id === productId) {
-        setProductData(item);
-        setImage(item.image[0])
-        return null;
-      }
-    })
-
-  }
-
   useEffect(() => {
-    fetchProductData();
+    const matched = products.find(item => item._id === productId)
+    if (matched) {
+      setProductData(matched)
+      setImage(matched.image[0])
+    }
   }, [productId, products])
 
-  return productData ? (
-    <div className='border-t-2 pt-10 transition-opacity ease-in duration-500 opacity-100'>
+  if (!productData) return <div className="min-h-[60vh]"></div>
 
-      {/* product data */}
-      <div className='flex gap-12 sm:gap-12 flex-col sm:flex-row'>
-
-        {/* product images */}
-        <div className='flex-1 flex flex-col-reverse gap-3 sm:flex-row'>
-          <div className='flex sm:flex-col overflow-x-auto sm:overflow-y-scroll justify-between sm:justify-normal sm:w-[18.7%] w-full'>
-            {
-              productData.image.map((item, index) => (
-                <img onClick={() => { setImage(item) }} src={item} key={index} className='w-[24%] sm:w-full sm:mb-3 flex-shrink-0 cursor-pointer' alt="" />
-              ))
-            }
+  return (
+    <section className="text-gray-100 px-4 md:px-10 pt-14 mt-20">
+      {/* Main Product Layout */}
+      <div className="flex flex-col lg:flex-row gap-12">
+        {/* Images */}
+        <div className="flex-1 flex flex-col-reverse lg:flex-row gap-4">
+          <div className="flex lg:flex-col gap-3 overflow-x-auto lg:overflow-y-auto max-h-[450px] lg:w-[20%]">
+            {productData.image.map((img, i) => (
+              <img
+                key={i}
+                src={img}
+                onClick={() => setImage(img)}
+                className={`w-20 h-20 object-cover border rounded cursor-pointer transition ${
+                  image === img ? 'border-teal-400' : 'border-gray-700'
+                }`}
+              />
+            ))}
           </div>
-          <div className='w-full sm:w-[80%]'>
-            <img src={image} className='w-full h-auto' alt="" />
+          <div className="flex-1">
+            <img src={image} alt="Product" className="w-full h-auto max-h-[500px] object-contain rounded" />
           </div>
         </div>
 
-        {/* product info */}
-        <div className='flex-1'>
-          <h1 className='font-medium text-2xl mt-2'>{productData.name}</h1>
-          <div className='flex items-center gap-1 mt-2'>
-            <img src={assets.star_icon} alt="" className="w-3 5" />
-            <img src={assets.star_icon} alt="" className="w-3 5" />
-            <img src={assets.star_icon} alt="" className="w-3 5" />
-            <img src={assets.star_icon} alt="" className="w-3 5" />
-            <img src={assets.star_dull_icon} alt="" className="w-3 5" />
-            <p className='pl-2'>(122)</p>
+        {/* Product Info */}
+        <div className="flex-1">
+          <h1 className="text-3xl font-semibold mb-4">{productData.name}</h1>
+
+          {/* Rating */}
+          <div className="flex items-center gap-1 mb-4">
+            {[...Array(4)].map((_, i) => (
+              <img key={i} src={assets.star_icon} className="w-4 h-4" alt="star" />
+            ))}
+            <img src={assets.star_dull_icon} className="w-4 h-4" alt="star dull" />
+            <span className="ml-2 text-sm text-gray-400">(122)</span>
           </div>
-          <p className='mt-5 text-3xl font-medium'>{currency}{productData.price}</p>
-          <p className='mt-5 text-gray-500 md:w-4/5'>{productData.description}</p>
-          <div className='flex flex-col gap-4 my-8'>
-            <p>Select Size</p>
-            <div className='flex gap-2'>
-              {productData.sizes.map((item, index) => (
-                <button onClick={() => { setSize(item) }} className={`border py-2 px-4 bg-gray-100 ${item === size ? 'border-orange-500' : ''}`} key={index}>{item}</button>
+
+          {/* Price */}
+          <p className="text-3xl font-bold text-teal-400 mb-6">
+            {currency}{productData.price}
+          </p>
+
+          {/* Description */}
+          <p className="text-gray-400 mb-6">{productData.description}</p>
+
+          {/* Size Selection */}
+          <div className="mb-6">
+            <p className="mb-2 text-sm font-medium text-gray-300">Select Size</p>
+            <div className="flex gap-2 flex-wrap">
+              {productData.sizes.map((s, i) => (
+                <button
+                  key={i}
+                  onClick={() => setSize(s)}
+                  className={`px-4 py-2 rounded border transition ${
+                    size === s
+                      ? 'bg-gray-800 border-teal-400 text-teal-400'
+                      : 'bg-gray-900 border-gray-700 text-gray-300'
+                  }`}
+                >
+                  {s}
+                </button>
               ))}
             </div>
           </div>
-          <button onClick={()=>{addToCart(productData._id,size)}} className='bg-black text-white px-8 py-3 text-sm active:bg-gray-700'>ADD TO CART</button>
-          <hr className='mt-8 sm:w-4/5' />
-          <div className='text-sm text-gray-500 mt-5 flex flex-col gap-1'>
-            <p>100% Orignal Product.</p>
-            <p>Cash on delivery in available on this product.</p>
-            <p>Easy return and axchange policy within 7 days.</p>
 
+          {/* Add to Cart Button */}
+          <button
+            onClick={() => addToCart(productData._id, size)}
+            className="bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded text-sm font-medium transition"
+          >
+            Add to Cart
+          </button>
+
+          {/* Info */}
+          <div className="border-t border-gray-800 mt-8 pt-4 text-sm text-gray-500 space-y-1">
+            <p>100% Original Product</p>
+            <p>Cash on delivery available</p>
+            <p>Easy return & exchange within 7 days</p>
           </div>
         </div>
-
-      </div>
-      {/* description and reviews section */}
-      <div className='mt-20'>
-        <div className='flex '>
-          <b className='border px-5 text-sm py-3'>Description</b>
-          <p className='border px-5 text-sm py-3'>Reviews (122)</p>
-        </div>
-        <div className='flex flex-col gap-4 border px-6 py-6 text-sm text-gray-500'>
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nobis recusandae voluptatibus in numquam! Nostrum libero odio eligendi inventore nisi, explicabo pariatur totam iste ratione. Quibusdam repellat, quia, consequatur quam provident reiciendis excepturi dignissimos eligendi praesentium quasi perferendis? Ad praesentium amet voluptatum eligendi vitae non aperiam.</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus ex est eligendi eos qui, doloremque, iure incidunt officiis vitae quaerat, porro repudiandae quidem? Ea dignissimos odit praesentium molestiae fugit numquam recusandae expedita, commodi nulla iure optio quam incidunt. Dolores minus enim corrupti rem error quam?</p>
-        </div>
       </div>
 
-      {/* {display related products} */}
-      <RelatedProducts category={productData.category} subCategory={productData.subCategory}/>
-    </div>
-  ) : <div className='opacity-0'></div>
+      {/* Tabs Section */}
+      <div className="mt-20">
+        <div className="flex border-b border-gray-800">
+          <button className="px-6 py-3 text-sm font-medium text-teal-400 border-b-2 border-teal-400">Description</button>
+          <button className="px-6 py-3 text-sm text-gray-400">Reviews (122)</button>
+        </div>
+        <div className="border border-t-0 border-gray-800 bg-gray-950 rounded-b-lg px-6 py-6 text-sm text-gray-400 space-y-4">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum nisi eius sequi atque dolores?</p>
+          <p>Consequatur quidem commodi, iusto architecto pariatur perspiciatis sit laborum incidunt maxime nihil tempora!</p>
+        </div>
+      </div>
+
+      {/* Related Products */}
+      <div className="mt-20">
+        <RelatedProducts category={productData.category} subCategory={productData.subCategory} />
+      </div>
+    </section>
+  )
 }
 
 export default Product

@@ -3,38 +3,43 @@ import { assets } from '../assets/assets'
 
 const Footer = () => {
   return (
-    <div>
-      <div className='flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-14 my-10 mt-40 text-sm'>
-        <div>
-            <img src={assets.logo} className='mb-5 w-32' alt="" />
-            <p className='w-full md:w-2/3 text-gray-600'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio alias asperiores minus autem aliquam, nam reiciendis ab consequatur, dignissimos nesciunt veniam, laboriosam harum ex aperi
-            </p>
+    <div className="bg-gradient-to-t from-gray-950 to-black py-16 px-6 text-gray-100">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-12">
+        {/* Left Section - Logo and Description */}
+        <div className="space-y-6 sm:space-y-10">
+          <img src={assets.logo} className="w-32 mx-auto sm:mx-0 mb-4" alt="Logo" />
+          <p className="text-sm sm:text-base text-gray-400">
+            Elevating your style with exclusive collections. Join us and stay ahead with the best deals and updates.
+          </p>
         </div>
 
-        <div>
-            <p className='text-xl font-medium mb-5'>COMPANY</p>
-            <ul className='flex flex-col gap-1 text-gray-600'>
-                <li>Home</li>
-                <li>About us</li>
-                <li>Delivery</li>
-                <li>Privacy policy</li>
-            </ul>
+        {/* Middle Section - Company Links */}
+        <div className="space-y-6 sm:space-y-10">
+          <h4 className="text-xl font-semibold text-teal-300 mb-5">COMPANY</h4>
+          <ul className="space-y-4 text-gray-400">
+            <li className="hover:text-teal-400 transition-all duration-300">Home</li>
+            <li className="hover:text-teal-400 transition-all duration-300">About Us</li>
+            <li className="hover:text-teal-400 transition-all duration-300">Delivery</li>
+            <li className="hover:text-teal-400 transition-all duration-300">Privacy Policy</li>
+          </ul>
         </div>
 
-        <div>
-            <p className='text-xl font-medium mb-5'>GET IN TOUCH</p>
-            <ul className='flex flex-col gap-1 text-gray-600'>
-                <li>+92-345-9999999</li>
-                <li>forever@gmail.com</li>
-            </ul>
+        {/* Right Section - Contact Information */}
+        <div className="space-y-6 sm:space-y-10">
+          <h4 className="text-xl font-semibold text-teal-300 mb-5">GET IN TOUCH</h4>
+          <ul className="space-y-4 text-gray-400">
+            <li className="hover:text-teal-400 transition-all duration-300">+92-345-9999999</li>
+            <li className="hover:text-teal-400 transition-all duration-300">forever@gmail.com</li>
+          </ul>
         </div>
-
       </div>
 
-      <div>
-        <hr />
-        <p className='py-5 text-sm text-center'>Copyright 2025@ forever.com - All Right Reserved.</p>
+      {/* Divider and Copyright */}
+      <div className="mt-12">
+        <hr className="border-gray-700" />
+        <p className="text-sm text-center text-gray-400 py-5">
+          &copy; 2025 forever.com - All Rights Reserved.
+        </p>
       </div>
     </div>
   )
