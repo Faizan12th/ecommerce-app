@@ -3,7 +3,7 @@ import { assets } from '../assets/assets'
 
 const Footer = () => {
   return (
-    <div className="bg-gradient-to-t from-gray-950 to-black py-16 px-6 text-gray-100">
+    <div className="bg-gray-900 py-16 px-6 text-gray-100">
       <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-12">
         {/* Left Section - Logo and Description */}
         <div className="space-y-6 sm:space-y-10">

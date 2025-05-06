@@ -21,7 +21,7 @@ const OurPolicy = () => {
   ]
 
   return (
-    <section className="py-20 px-6 bg-gradient-to-br from-gray-900 via-gray-950 to-black text-gray-100 rounded-xl shadow-lg">
+    <section className="pt-14 pb-5 px-6 text-gray-100">
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-12">
         {policies.map((policy, index) => (
           <div

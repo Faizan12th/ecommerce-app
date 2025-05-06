@@ -8,13 +8,13 @@ const ProductItem = ({ id, image, name, price }) => {
     return (
         <Link to={`/product/${id}`} className="group text-gray-700 hover:text-teal-300 cursor-pointer">
             {/* Container with light background */}
-            <div className="min-h-[300px] bg-gray-800 p-2 sm:p-3 rounded-xl transition-transform duration-300 hover:scale-105 hover:bg-gray-700">
+            <div className="min-h-[300px] bg-gray-900 p-2 sm:p-3 rounded-xl transition-transform duration-300 hover:scale-105 hover:bg-gray-700">
                 {/* Product Image */}
                 <div className="w-full overflow-hidden rounded-md">
                     <img src={image[0]} className="w-full h-full object-cover group-hover:scale-105 transition-all duration-300" alt={name} />
                 </div>
 
-                <p className="mt-4 text-sm sm:text-base font-medium text-gray-300 group-hover:text-teal-300 transition-all duration-300">
+                <p className="min-h-10 mt-4 text-sm font-medium text-gray-300 group-hover:text-teal-300 transition-all duration-300">
                     {name}
                 </p>
 

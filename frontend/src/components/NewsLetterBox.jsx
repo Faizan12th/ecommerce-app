@@ -7,7 +7,7 @@ const NewsLetterBox = () => {
   }
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-br from-gray-900 via-gray-950 to-black text-gray-100 rounded-xl shadow-lg">
+    <section className="pt-5 pb-16 px-4 text-gray-100 rounded-xl shadow-lg">
       <div className="max-w-xl mx-auto text-center bg-gray-900/30 backdrop-blur-md p-10 rounded-xl shadow-md">
         <h2 className="text-2xl sm:text-3xl font-semibold text-teal-300 mb-3">
           Subscribe & Get 20% Off
