@@ -18,28 +18,30 @@ const SearchBar = () => {
     }, [location])
 
     return showSearch && visible ? (
-        <div className='flex items-center justify-between bg-gray-900 text-gray-100 py-3 px-5 mb-6 w-[700px] mx-80'>
-            <div className='flex items-center justify-start w-full max-w-3xl mx-auto gap-3'>
+        <div className="flex flex-row items-center justify-between bg-gray-900 text-gray-100 py-3 px-5 mb-6 w-full max-w-4xl mx-auto rounded-lg gap-4 sm:gap-0">
+            <div className="flex items-center w-full gap-3">
                 <input
                     value={search}
                     onChange={(e) => { setSearch(e.target.value) }}
-                    className='w-full sm:w-3/4 p-3 rounded-full bg-gray-800 text-sm text-gray-300 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-400'
+                    className="w-full p-3 rounded-full bg-gray-800 text-sm text-gray-300 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-400"
                     type="text"
-                    placeholder='Search'
+                    placeholder="Search"
                 />
                 <img
-                    className=' w-5 cursor-pointer'
+                    className="w-5 cursor-pointer"
                     src={assets.search_icon}
                     alt="Search Icon"
                 />
             </div>
 
-            <img
-                onClick={() => { setShowSearch(false) }}
-                className='w-4 cursor-pointer'
-                src={assets.cross_icon}
-                alt="Close"
-            />
+            <div className="flex justify-end sm:ml-4">
+                <img
+                    onClick={() => { setShowSearch(false) }}
+                    className="w-4 cursor-pointer"
+                    src={assets.cross_icon}
+                    alt="Close"
+                />
+            </div>
         </div>
     ) : null
 }

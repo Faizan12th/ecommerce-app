@@ -8,7 +8,7 @@ const NewsLetterBox = () => {
 
   return (
     <section className="pt-5 pb-16 px-4 text-gray-100 rounded-xl shadow-lg">
-      <div className="max-w-xl mx-auto text-center bg-gray-900/30 backdrop-blur-md p-10 rounded-xl shadow-md">
+      <div className="max-w-xl mx-auto text-center bg-gray-900 backdrop-blur-md p-10 rounded-xl shadow-md transition-all duration-300 hover:scale-105 hover:shadow-teal-500/20 hover:border hover:border-teal-400">
         <h2 className="text-2xl sm:text-3xl font-semibold text-teal-300 mb-3">
           Subscribe & Get 20% Off
         </h2>
