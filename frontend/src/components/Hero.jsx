@@ -29,7 +29,7 @@ const Hero = () => {
                 <img
                     src={assets.hero_img}
                     alt="Hero"
-                    className="w-full max-h-[450px] object-cover rounded-lg shadow-lg"
+                    className="w-full max-h-[451px] object-cover rounded-lg shadow-lg"
                 />
             </div>
         </div>
