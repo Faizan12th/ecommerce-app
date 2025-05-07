@@ -24,7 +24,7 @@ const BestSeller = () => {
             </div>
 
             {/* Product Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-6">
                 {latestProducts.map((item, index) => (
                     <div key={index} className="transition-transform duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-teal-500/10">
                         <ProductItem

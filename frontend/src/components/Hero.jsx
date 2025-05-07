@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 const Hero = () => {
     const navigate = useNavigate()
     return (
-        <div className="flex flex-col sm:flex-row items-center justify-between px-6 sm:px-10 py-12 bg-gradient-to-r from-gray-900 via-gray-950 to-black text-gray-100 rounded-xl shadow-xl overflow-hidden">
+        <div className="flex flex-col sm:flex-row items-center justify-between px-2 sm:px-10 py-12 bg-gradient-to-r from-gray-900 via-gray-950 to-black text-gray-100 rounded-xl shadow-xl overflow-hidden">
 
             {/* Hero Left Side */}
             <div className="w-full sm:w-1/2 flex flex-col gap-6 animate-fade-in">

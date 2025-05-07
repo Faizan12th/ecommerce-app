@@ -72,7 +72,7 @@ const Collection = () => {
   }, [sortType])
 
   return (
-    <section className="px-4 py-16 md:px-10 mt-12">
+    <section className="px-2 py-16 md:px-10 mt-12">
       <SearchBar/>
       <div className="flex flex-col lg:flex-row gap-8">
         {/* FILTERS */}
@@ -144,7 +144,7 @@ const Collection = () => {
 
           {/* PRODUCT GRID */}
           {filterProducts.length ? (
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-2 sm:gap-6">
               {filterProducts.map((item, index) => (
                 <div
                   key={index}

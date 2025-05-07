@@ -201,7 +201,7 @@ const PlaceOrder = () => {
               <img src={assets.stripe_logo} className="h-5" alt="Stripe" />
             </div>
 
-            {/* Razorpay */}
+            {/* Razorpay
             <div
               onClick={() => setMethod('razorpay')}
               className={`flex items-center gap-3 px-4 py-2 cursor-pointer rounded-md border transition ${
@@ -214,7 +214,7 @@ const PlaceOrder = () => {
                 }`}
               ></span>
               <img src={assets.razorpay_logo} className="h-5" alt="Razorpay" />
-            </div>
+            </div> */}
 
             {/* COD */}
             <div
