@@ -17,7 +17,7 @@ const BestSeller = () => {
         <section>
             {/* Section Title */}
             <div className="text-center mb-12">
-                <Title text1="BEST" text2="SELLERS" />
+                <Title text1="LATEST" text2="COLLECTION" />
                 <p className="w-full sm:w-3/4 md:w-2/3 mx-auto text-sm md:text-base text-gray-400 mt-3 leading-relaxed">
                     These are the fan-favorite pieces that everyone's talking about. Stylish, reliable, and in high demand.
                 </p>
