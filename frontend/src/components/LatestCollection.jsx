@@ -5,12 +5,13 @@ import ProductItem from './ProductItem'
 
 const BestSeller = () => {
     const { products } = useContext(ShopContext)
-    const [bestSellerProducts, setBestSellerProducts] = useState([])
+    const [latestProducts, setLatestProducts] = useState([])
 
     useEffect(() => {
-        const filtered = products.filter(item => item.bestSeller)
-        setBestSellerProducts(filtered.slice(0, 10))
+        const filtered = [...products]     
+        setLatestProducts(filtered.slice(0, 10))
     }, [products])
+
 
     return (
         <section>
@@ -24,7 +25,7 @@ const BestSeller = () => {
 
             {/* Product Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-                {bestSellerProducts.map((item, index) => (
+                {latestProducts.map((item, index) => (
                     <div key={index} className="transition-transform duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-teal-500/10">
                         <ProductItem
                             id={item._id}
