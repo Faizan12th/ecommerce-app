@@ -23,16 +23,16 @@ const Contact = () => {
         <div className="space-y-6 text-gray-300 text-sm md:text-base md:w-1/2">
           <div>
             <h3 className="text-teal-300 text-lg font-semibold mb-1">Our Store</h3>
-            <p className="text-gray-400">Sector 22 G<br />POF, Wah Cantt</p>
+            <p className="text-gray-400">Rawalpindi<br />Punjab, Pakistan</p>
           </div>
 
           <div>
             <h3 className="text-teal-300 text-lg font-semibold mb-1">Contact Info</h3>
-            <p className="text-gray-400">Tel: +92-345-9999999<br />Email: admin@forever.com</p>
+            <p className="text-gray-400">Tel: +92-399-9999999<br />Email: admin@assertiveattire.com</p>
           </div>
 
           <div>
-            <h3 className="text-teal-300 text-lg font-semibold mb-1">Careers at Forever</h3>
+            <h3 className="text-teal-300 text-lg font-semibold mb-1">Careers at Assertive Attire</h3>
             <p className="text-gray-400">Learn more about our teams and job openings.</p>
             <button className="mt-3 border border-teal-500 text-teal-300 px-6 py-2 rounded-md hover:bg-teal-600 hover:text-white transition duration-300">
               Explore Jobs

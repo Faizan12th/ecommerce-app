@@ -1,7 +1,9 @@
 import React from 'react'
 import { assets } from '../assets/assets'
+import { useNavigate } from 'react-router-dom'
 
 const Hero = () => {
+    const navigate = useNavigate()
     return (
         <div className="flex flex-col sm:flex-row items-center justify-between px-6 sm:px-10 py-12 bg-gradient-to-r from-gray-900 via-gray-950 to-black text-gray-100 rounded-xl shadow-xl overflow-hidden">
 
@@ -17,7 +19,7 @@ const Hero = () => {
                 </h1>
 
                 <div className="flex items-center gap-4 mt-2">
-                    <button className="px-6 py-2 bg-teal-500 hover:bg-teal-400 text-black font-semibold text-sm rounded-full transition duration-300 shadow-md hover:scale-105">
+                    <button onClick={()=>navigate('/collection')} className="px-6 py-2 bg-teal-500 hover:bg-teal-400 text-black font-semibold text-sm rounded-full transition duration-300 shadow-md hover:scale-105">
                         Shop Now
                     </button>
                     <div className="w-10 h-[2px] bg-teal-500" />

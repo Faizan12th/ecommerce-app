@@ -76,7 +76,7 @@ const Collection = () => {
       <SearchBar/>
       <div className="flex flex-col lg:flex-row gap-8">
         {/* FILTERS */}
-        <aside className={`w-full lg:w-60 ${showFilter ? 'block' : 'hidden lg:block'}`}>
+        <aside className={`w-full lg:w-40 ${showFilter ? 'block' : 'hidden lg:block'}`}>
           <div
             onClick={() => setShowFilter(!showFilter)}
             className="text-lg font-semibold cursor-pointer flex items-center gap-2 mb-6 text-teal-300"
