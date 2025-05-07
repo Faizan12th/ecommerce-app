@@ -42,8 +42,8 @@ const Orders = () => {
   }, [token])
 
   return (
-    <section className=" min-h-screen px-4 md:px-10 pt-20 text-gray-100 mt-10">
-      <div className="text-2xl mb-10">
+    <section className=" min-h-screen px-4 md:px-10 pt-20 text-gray-100 mt-10 mb-5">
+      <div className="text-2xl mb-4">
         <Title text1="MY" text2="ORDERS" />
       </div>
 
