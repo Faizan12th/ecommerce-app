@@ -37,7 +37,7 @@ const Login = () => {
   }, [token])
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-16">
+    <div className="min-h-screen flex items-center justify-center px-4 pt-24">
       <form
         onSubmit={onSubmitHandler}
         className="w-full max-w-md bg-gray-900/50 backdrop-blur-lg p-8 rounded-2xl shadow-lg text-gray-100 space-y-6"
